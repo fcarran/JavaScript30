@@ -34,7 +34,16 @@ function findMatches(wordToMatch, cities) {
 
 function displayMatches(){
     const matchArray = findMatches(this.value, cities);
-    console.log(matchArray); // this should output many values for one letter, less for two letters, and so on
+    //console.log(matchArray); // this should output many values for one letter, less for two letters, and so on
+    const html = matchArray.map(place => {
+        return `
+            <li>
+                <span class name = "name">${place.city}, ${place.state}</span>
+                <span class name = "population">${place.population}</span>
+            </li>
+        `;
+    }).join(''); //changes the returned array into one giant string
+    suggestions.innerHTML = html;
 }
 
 const searchInput = document.querySelector('.search');
