@@ -23,6 +23,26 @@ fetch(endpoint) //goes to endpoint specified
     .then(blob => blob.json())  //using the JSON method from the console output
     .then(data => cities.push(...data)); //changed the console.log to a "spray" combined with a push into the "cities" array
 
+
+function findMatches(wordToMatch, cities) {
+    return cities.filter(place => {
+        //here we need to figure out if the city or state matches what was searched
+        const regex = new RegExp(wordToMatch, 'gi'); //"g" is for global, "i" is for insensitive
+        return place.city.match(regex) || place.state.match(regex);
+    });
+}
+
+function displayMatches(){
+    const matchArray = findMatches(this.value, cities);
+    console.log(matchArray); // this should output many values for one letter, less for two letters, and so on
+}
+
+const searchInput = document.querySelector('.search');
+const suggestions = document.querySelector('.suggestions');
+
+searchInput.addEventListener('change', displayMatches);
+searchInput.addEventListener('keyup', displayMatches); //the keyup is so that we don't have to click out of the text box to "change" the state of the page
+
 </script>
   </body>
 </html>
