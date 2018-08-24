@@ -36,9 +36,11 @@ function displayMatches(){
     const matchArray = findMatches(this.value, cities);
     //console.log(matchArray); // this should output many values for one letter, less for two letters, and so on
     const html = matchArray.map(place => {
+        const regex = new RegExp(this.value, 'gi');
+        const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`);
         return `
             <li>
-                <span class name = "name">${place.city}, ${place.state}</span>
+                <span class name = "name">${cityName}, ${place.state}</span>
                 <span class name = "population">${place.population}</span>
             </li>
         `;
