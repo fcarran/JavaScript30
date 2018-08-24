@@ -17,11 +17,11 @@
 <script>
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json'; //json of city names
 
-let cities = [];
+const cities = [];  //push will work with a const array
 
 fetch(endpoint) //goes to endpoint specified
     .then(blob => blob.json())  //using the JSON method from the console output
-    .then(data => console.log(data)); //returns a "promise"
+    .then(data => cities.push(...data)); //changed the console.log to a "spray" combined with a push into the "cities" array
 
 </script>
   </body>
