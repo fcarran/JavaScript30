@@ -32,6 +32,10 @@ function findMatches(wordToMatch, cities) {
     });
 }
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
 function displayMatches(){
     const matchArray = findMatches(this.value, cities);
     //console.log(matchArray); // this should output many values for one letter, less for two letters, and so on
@@ -42,7 +46,7 @@ function displayMatches(){
         return `
             <li>
                 <span class name = "name">${cityName}, ${stateName}</span>
-                <span class name = "population">${place.population}</span>
+                <span class name = "population">${numberWithCommas(place.population)}</span>
             </li>
         `;
     }).join(''); //changes the returned array into one giant string
